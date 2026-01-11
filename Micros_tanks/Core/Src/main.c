@@ -68,6 +68,18 @@ static void MX_TIM1_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
+	if(GPIO_Pin == GPIO_PIN_1){
+		if(HW_DebounceBoton()==1){
+			flag_btn_j1 = 1; //actualizar la flag
+		}
+	}
+	if(GPIO_Pin == GPIO_PIN_0){
+			if(HW_DebounceBoton()==1){
+				flag_btn_j2 = 1; //actualizar la flag
+			}
+		}
+}
 /* USER CODE END 0 */
 
 /**
@@ -84,7 +96,7 @@ int main(void)
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-  HAL_Init();
+    HAL_Init();
 
   /* USER CODE BEGIN Init */
 
@@ -132,7 +144,7 @@ int main(void)
 
 
 	  	    // A. MÁQUINA DE ESTADOS (Toma decisiones sobre lo que pasa en el juego))
-	        FSM_Actualizar(&juego);
+ 	        FSM_Actualizar(&juego);
 
 	        // B. MOTOR GRÁFICO (Lo que se dibuja siempre)
 	        // 1. Limpiar buffer anterior
@@ -332,9 +344,9 @@ static void MX_TIM1_Init(void)
 
   /* USER CODE END TIM1_Init 1 */
   htim1.Instance = TIM1;
-  htim1.Init.Prescaler = 100;
+  htim1.Init.Prescaler = 15;
   htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim1.Init.Period = 1000;
+  htim1.Init.Period = 9999;
   htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim1.Init.RepetitionCounter = 0;
   htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;

@@ -60,8 +60,8 @@ all: main-build
 main-build: Micros_tanks.elf secondary-outputs
 
 # Tool invocations
-Micros_tanks.elf Micros_tanks.map: $(OBJS) $(USER_OBJS) C:\Users\omarf\Documents\GitHub\Trabajo-Micros\Micros_tanks\STM32F407VGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "Micros_tanks.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\omarf\Documents\GitHub\Trabajo-Micros\Micros_tanks\STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Micros_tanks.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Micros_tanks.elf Micros_tanks.map: $(OBJS) $(USER_OBJS) E:\uni\SED\Trabajo-Micros\Micros_tanks\STM32F407VGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "Micros_tanks.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"E:\uni\SED\Trabajo-Micros\Micros_tanks\STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Micros_tanks.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

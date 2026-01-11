@@ -23,7 +23,8 @@ float HW_LeerAngulo(int jugador);
 void HW_Buzzer_Init(void);
 void HW_Buzzer_Stop(void);
 void HW_Buzzer_Frecuencia(float freq); // Pone un tono
-void HW_Buzzer_Disparo(void);          // Efecto de sonido "Pium"
+void HW_Buzzer_Disparo(void);          // Efecto de sonido
+void SonidoPWM_Beep(float freq, float duration_ms); //play sonido
 void HW_Buzzer_Victoria(void);         // Melodía completa
 
 // --- BOTONES ---

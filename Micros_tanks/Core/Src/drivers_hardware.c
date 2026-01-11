@@ -1,3 +1,4 @@
+
 /*
  * drivers_hardware.c
  *
@@ -76,7 +77,7 @@ void HW_Buzzer_Frecuencia(float freq) {
         __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, 0); // Silencio
         return;
     }
-    // Asumiendo reloj base aprox 1MHz (Prescaler 100 en 100MHz)
+    // Reloj base es de 16 Mhz (Prescaler 16 en 1MHz)
     // Periodo = 1.000.000 / Freq
     uint32_t periodo = (uint32_t)(1000000 / freq);
     __HAL_TIM_SET_AUTORELOAD(&htim1, periodo);
@@ -88,22 +89,51 @@ void HW_Buzzer_Stop(void) {
 }
 
 void HW_Buzzer_Disparo(void) {
-    for(int f=800; f>200; f-=50) { // Barrido de frecuencia descendente
-        HW_Buzzer_Frecuencia(f);
-        HAL_Delay(5);
-    }
-    HW_Buzzer_Stop();
+    SonidoPWM_Beep(440,200);
+}
+void SonidoPWM_Beep(float freq, float duration_ms)
+{
+	uint32_t counter = HAL_GetTick();
+	HW_Buzzer_Frecuencia(freq);
+
+	while (HAL_GetTick() - counter < duration_ms)
+	{
+		HW_Buzzer_Frecuencia(freq);
+	}
+
+	HW_Buzzer_Stop();
 }
 
 void HW_Buzzer_Victoria(void) {
-    // Melodía simple
-    float notas[] = {523.25, 659.25, 783.99, 1046.50}; // Do, Mi, Sol, Do alto
-    for(int i=0; i<4; i++) {
-        HW_Buzzer_Frecuencia(notas[i]);
-        HAL_Delay(150);
-        HW_Buzzer_Stop();
-        HAL_Delay(50);
-    }
+	float A = 440;
+		float F = 349.228231;
+		float G = 391.995436;
+		float tempo = 150; //bpm
+		float  t_negra = tempo/60 * 100; //tiempo que dura una nota en ms
+		float  t_corchea = t_negra/4;
+		float t_blanca = 2*t_negra;
+		SonidoPWM_Beep(A,t_corchea);
+		SonidoPWM_Beep(0,100);
+		SonidoPWM_Beep(A,t_corchea);
+		SonidoPWM_Beep(0,100);
+		SonidoPWM_Beep(A,t_corchea);
+		SonidoPWM_Beep(0,100);
+		SonidoPWM_Beep(A,t_negra);
+		SonidoPWM_Beep(0,100);
+		SonidoPWM_Beep(F,t_negra);
+		SonidoPWM_Beep(0,100);
+		SonidoPWM_Beep(G,t_corchea);
+		SonidoPWM_Beep(0,100);
+		SonidoPWM_Beep(G,t_corchea);
+		SonidoPWM_Beep(0,100);
+		SonidoPWM_Beep(A,t_corchea);
+		SonidoPWM_Beep(0,100);
+		SonidoPWM_Beep(0,t_corchea);//silencio corchea
+		SonidoPWM_Beep(0,100);
+		SonidoPWM_Beep(G,t_corchea);
+		SonidoPWM_Beep(0,100);
+		SonidoPWM_Beep(A,t_blanca);
+		HW_Buzzer_Stop();
 }
 
 // ================= BOTONES =================

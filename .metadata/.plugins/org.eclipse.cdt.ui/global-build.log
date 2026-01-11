@@ -1,0 +1,123 @@
+22:44:52 **** Incremental Build of configuration Debug for project Micros_tanks ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/drivers_hardware.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/drivers_hardware.d" -MT"Core/Src/drivers_hardware.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/drivers_hardware.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "Micros_tanks.elf" @"objects.list"   -mcpu=cortex-m4 -T"E:\uni\SED\Trabajo-Micros\Micros_tanks\STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Micros_tanks.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Micros_tanks.elf
+ 
+arm-none-eabi-size  Micros_tanks.elf 
+arm-none-eabi-objdump -h -S Micros_tanks.elf  > "Micros_tanks.list"
+   text	   data	    bss	    dec	    hex	filename
+  21952	     12	   1892	  23856	   5d30	Micros_tanks.elf
+Finished building: default.size.stdout
+ 
+Finished building: Micros_tanks.list
+ 
+22:45:06 **** Incremental Build of configuration Debug for project Micros_tanks ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/drivers_hardware.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/drivers_hardware.d" -MT"Core/Src/drivers_hardware.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/drivers_hardware.o"
+arm-none-eabi-gcc -o "Micros_tanks.elf" @"objects.list"   -mcpu=cortex-m4 -T"E:\uni\SED\Trabajo-Micros\Micros_tanks\STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Micros_tanks.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Micros_tanks.elf
+ 
+arm-none-eabi-size  Micros_tanks.elf 
+arm-none-eabi-objdump -h -S Micros_tanks.elf  > "Micros_tanks.list"
+   text	   data	    bss	    dec	    hex	filename
+  21952	     12	   1892	  23856	   5d30	Micros_tanks.elf
+Finished building: default.size.stdout
+ 
+Finished building: Micros_tanks.list
+ 
+22:49:46 **** Incremental Build of configuration Debug for project Micros_tanks ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/drivers_hardware.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/drivers_hardware.d" -MT"Core/Src/drivers_hardware.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/drivers_hardware.o"
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:407,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Inc/drivers_hardware.h:12,
+                 from ../Core/Src/drivers_hardware.c:8:
+../Core/Src/drivers_hardware.c: In function 'HW_Buzzer_Frecuencia':
+../Core/Src/drivers_hardware.c:77:40: error: 'htim2' undeclared (first use in this function); did you mean 'htim1'?
+   77 |                 __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, 0); // silencio
+      |                                        ^~~~~
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:1395:41: note: in definition of macro '__HAL_TIM_SET_COMPARE'
+ 1395 |   (((__CHANNEL__) == TIM_CHANNEL_1) ? ((__HANDLE__)->Instance->CCR1 = (__COMPARE__)) :\
+      |                                         ^~~~~~~~~~
+../Core/Src/drivers_hardware.c:77:40: note: each undeclared identifier is reported only once for each function it appears in
+   77 |                 __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, 0); // silencio
+      |                                        ^~~~~
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:1395:41: note: in definition of macro '__HAL_TIM_SET_COMPARE'
+ 1395 |   (((__CHANNEL__) == TIM_CHANNEL_1) ? ((__HANDLE__)->Instance->CCR1 = (__COMPARE__)) :\
+      |                                         ^~~~~~~~~~
+make: *** [Core/Src/subdir.mk:43: Core/Src/drivers_hardware.o] Error 1
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+22:49:57 **** Incremental Build of configuration Debug for project Micros_tanks ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/drivers_hardware.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/drivers_hardware.d" -MT"Core/Src/drivers_hardware.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/drivers_hardware.o"
+arm-none-eabi-gcc -o "Micros_tanks.elf" @"objects.list"   -mcpu=cortex-m4 -T"E:\uni\SED\Trabajo-Micros\Micros_tanks\STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Micros_tanks.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Micros_tanks.elf
+ 
+arm-none-eabi-size  Micros_tanks.elf 
+arm-none-eabi-objdump -h -S Micros_tanks.elf  > "Micros_tanks.list"
+   text	   data	    bss	    dec	    hex	filename
+  21976	     12	   1892	  23880	   5d48	Micros_tanks.elf
+Finished building: default.size.stdout
+ 
+Finished building: Micros_tanks.list
+ 
+22:56:37 **** Incremental Build of configuration Debug for project Micros_tanks ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/drivers_hardware.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/drivers_hardware.d" -MT"Core/Src/drivers_hardware.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/drivers_hardware.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "Micros_tanks.elf" @"objects.list"   -mcpu=cortex-m4 -T"E:\uni\SED\Trabajo-Micros\Micros_tanks\STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Micros_tanks.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Micros_tanks.elf
+ 
+arm-none-eabi-size  Micros_tanks.elf 
+arm-none-eabi-objdump -h -S Micros_tanks.elf  > "Micros_tanks.list"
+   text	   data	    bss	    dec	    hex	filename
+  21952	     12	   1892	  23856	   5d30	Micros_tanks.elf
+Finished building: default.size.stdout
+ 
+Finished building: Micros_tanks.list
+ 
+22:57:41 **** Incremental Build of configuration Debug for project Micros_tanks ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "Micros_tanks.elf" @"objects.list"   -mcpu=cortex-m4 -T"E:\uni\SED\Trabajo-Micros\Micros_tanks\STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Micros_tanks.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Micros_tanks.elf
+ 
+arm-none-eabi-size  Micros_tanks.elf 
+arm-none-eabi-objdump -h -S Micros_tanks.elf  > "Micros_tanks.list"
+   text	   data	    bss	    dec	    hex	filename
+  21952	     12	   1892	  23856	   5d30	Micros_tanks.elf
+Finished building: default.size.stdout
+ 
+Finished building: Micros_tanks.list
+ 
+23:03:55 **** Incremental Build of configuration Debug for project Micros_tanks ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/fsm_juego.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/fsm_juego.d" -MT"Core/Src/fsm_juego.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/fsm_juego.o"
+arm-none-eabi-gcc -o "Micros_tanks.elf" @"objects.list"   -mcpu=cortex-m4 -T"E:\uni\SED\Trabajo-Micros\Micros_tanks\STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Micros_tanks.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Micros_tanks.elf
+ 
+arm-none-eabi-size  Micros_tanks.elf 
+arm-none-eabi-objdump -h -S Micros_tanks.elf  > "Micros_tanks.list"
+   text	   data	    bss	    dec	    hex	filename
+  21948	     12	   1892	  23852	   5d2c	Micros_tanks.elf
+Finished building: default.size.stdout
+ 
+Finished building: Micros_tanks.list
+ 
+23:06:32 **** Incremental Build of configuration Debug for project Micros_tanks ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/fsm_juego.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/fsm_juego.d" -MT"Core/Src/fsm_juego.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/fsm_juego.o"
+arm-none-eabi-gcc -o "Micros_tanks.elf" @"objects.list"   -mcpu=cortex-m4 -T"E:\uni\SED\Trabajo-Micros\Micros_tanks\STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Micros_tanks.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Micros_tanks.elf
+ 
+arm-none-eabi-size  Micros_tanks.elf 
+arm-none-eabi-objdump -h -S Micros_tanks.elf  > "Micros_tanks.list"
+   text	   data	    bss	    dec	    hex	filename
+  21952	     12	   1892	  23856	   5d30	Micros_tanks.elf
+Finished building: default.size.stdout
+ 
+Finished building: Micros_tanks.list
+ 
