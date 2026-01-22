@@ -127,8 +127,10 @@ void HW_Buzzer_Start(void) {
     SonidoPWM_Beep(1318, 300);
 }
 
-void HW_Buzzer_Disparo(void) {
-    SonidoPWM_Beep(440, 200);
+void HW_Buzzer_Disparo(float pot) {
+    float frec;
+    frec = 500.0f + (pot / 100) * 2500.0f;
+    SonidoPWM_Beep(frec, 200);
 }
 
 void HW_Buzzer_Impacto(void) {
