@@ -80,6 +80,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
 			}
 		}
 }
+
 /* USER CODE END 0 */
 
 /**
@@ -142,38 +143,43 @@ int main(void)
 
 //--------------------------------------------------------------------------------------------------------------------------
 
-
-	  	    // A. MÁQUINA DE ESTADOS (Toma decisiones sobre lo que pasa en el juego))
  	        FSM_Actualizar(&juego);
-
-	        // B. MOTOR GRÁFICO (Lo que se dibuja siempre)
-	        // 1. Limpiar buffer anterior
+ 	        FSM_ActualizarNubes(&juego);
 	        Fisicas_LimpiarPantalla();
 
-	        // 2. Dibujar elementos fijos (Muros, Suelo, Tanques)
-	        Fisicas_DibujarEscenario(T1_X_INI, T1_Y_INI, T2_X_INI, T2_Y_INI); //Variables definidas en config.h
 
-	        // 3. Dibujar balas si están volando
-	        if(Fisicas_GetBalaX() > 0){   // Si hay una bala activa
-	        	Fisicas_PintarBala();
+	        // Pantalla de inicio
+	        if (juego.estado_actual == ESTADO_INICIO) {
+
+	        	Fisicas_DibujarInicio(HAL_GetTick());
+	        }
+	        else {
+
+
+	        	// Dibujar elementos fijos (Muros, Suelo, Tanques)
+	        	Fisicas_DibujarEscenario(T1_X_INI, T1_Y_INI, T2_X_INI, T2_Y_INI, juego.nubes); //Variables definidas en config.h
+
+	        	// Dibujar balas si están volando
+	        	if(Fisicas_GetBalaX() > 0){   // Si hay una bala activa
+	        		Fisicas_PintarBala();
+	        	}
+
+	        	// Animaciones especiales (Explosiones / Game Over)
+	        	// La FSM se encarga de llamarlas
+	        	if (juego.estado_actual == ESTADO_J1_IMPACTO || juego.estado_actual == ESTADO_J2_IMPACTO) {
+	        		Fisicas_DibujarExplosion(Fisicas_GetBalaX(), Fisicas_GetBalaY(), juego.timer_animacion);
+	        	}
+
+	        	if (juego.estado_actual == ESTADO_GAME_OVER) {
+	        		Fisicas_DibujarGameOver();
+	        	}
 	        }
 
-	        // 4. Animaciones especiales (Explosiones / Game Over)
-	        // La FSM se encarga de llamarlas
-	        if (juego.estado_actual == ESTADO_J1_IMPACTO || juego.estado_actual == ESTADO_J2_IMPACTO) {
-	        	Fisicas_DibujarExplosion(Fisicas_GetBalaX(), Fisicas_GetBalaY(), juego.timer_animacion);
-	        }
-
-	        if (juego.estado_actual == ESTADO_GAME_OVER) {
-	             Fisicas_DibujarGameOver();
-	        }
-
-
-	        // C. VOLCADO A PANTALLA REAL
 	        HW_UpdateDisplay(Fisicas_GetBuffer());
 
 	        // Control de FPS (aprox 25 FPS)
 	        HAL_Delay(40);
+
   }
 
 
@@ -414,6 +420,7 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOH_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
+  __HAL_RCC_GPIOC_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(CS_MATRIZ_GPIO_Port, CS_MATRIZ_Pin, GPIO_PIN_RESET);
@@ -425,10 +432,19 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(CS_MATRIZ_GPIO_Port, &GPIO_InitStruct);
 
+  /* LEDs de Turno (PC0 y PC1) */
+  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_0|GPIO_PIN_1, GPIO_PIN_RESET);
+
+  GPIO_InitStruct.Pin = GPIO_PIN_0|GPIO_PIN_1; // PC0 y PC1
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+
   /*Configure GPIO pins : BTN_J1_Pin BTN_J2_Pin */
   GPIO_InitStruct.Pin = BTN_J1_Pin|BTN_J2_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
   /* EXTI interrupt init*/
