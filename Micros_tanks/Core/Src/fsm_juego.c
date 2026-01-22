@@ -164,7 +164,7 @@ void FSM_Actualizar(Juego_t *juego) {
                 Fisicas_PrepararDisparo(JUGADOR_1, juego->angulo_actual, juego->potencia_actual, T1_X_INI, T1_Y_INI);
 
                 // Efecto de sonido
-                HW_Buzzer_Disparo();
+                HW_Buzzer_Disparo(juego->potencia_actual);
 
                 // Cambio de estado
                 juego->estado_actual = ESTADO_J1_DISPARO;
@@ -246,7 +246,7 @@ void FSM_Actualizar(Juego_t *juego) {
                 flag_btn_j1 = 0;
 
                 Fisicas_PrepararDisparo(JUGADOR_2, juego->angulo_actual, juego->potencia_actual, T2_X_INI, T2_Y_INI);
-                HW_Buzzer_Disparo();
+                HW_Buzzer_Disparo(juego->potencia_actual);
                 juego->estado_actual = ESTADO_J2_DISPARO;
             }
             break;
