@@ -31,15 +31,25 @@ typedef struct {
     // Datos de la partida
     int ganador;            // 0=Nadie, 1=J1, 2=J2
     float angulo_actual;    // Guardar el ángulo mientras se apunta
+    float potencia_actual;
 
     // Control de tiempos para animaciones
     uint32_t timer_animacion;
+    int musica_gameover_sonada;
+
+    // Vidas
+    int vidas_j1;
+    int vidas_j2;
+
+    // Array de Nubes
+    Nube_t nubes[MAX_NUBES];
 
 } Juego_t;
 
 
 void FSM_Init(Juego_t *juego);
 void FSM_Actualizar(Juego_t *juego);
+void FSM_ActualizarNubes(Juego_t *juego);
 
 
 #endif /* INC_FSM_JUEGO_H_ */
