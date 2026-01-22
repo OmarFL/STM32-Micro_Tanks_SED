@@ -30,7 +30,7 @@ void HW_Buzzer_Start(void);
 void HW_Buzzer_Init(void);
 void HW_Buzzer_Stop(void);
 void HW_Buzzer_Frecuencia(float freq);
-void HW_Buzzer_Disparo(void);
+void HW_Buzzer_Disparo(float pot);
 void SonidoPWM_Beep(float freq, float duration_ms); //play sonido
 void HW_Buzzer_Victoria(void);         // Melodía completa
 void HW_Buzzer_Impacto(void);
