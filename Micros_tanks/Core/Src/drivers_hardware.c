@@ -146,7 +146,7 @@ void HW_Buzzer_Victoria(void) {
     float F = 349.228231;
     float G = 391.995436;
     float tempo = 150; //bpm
-    float t_negra = tempo/60 * 1000; // ms
+    float t_negra = tempo/60 * 100; // ms
     float t_corchea = t_negra/4;
     float t_blanca = 2*t_negra;
 
